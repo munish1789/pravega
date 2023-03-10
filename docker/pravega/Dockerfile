@@ -31,11 +31,11 @@ WORKDIR /opt/pravega
 COPY pravega/ /opt/pravega/
 COPY scripts/ /opt/pravega/scripts/
 
-RUN mkdir /opt/pravega/maintest
+RUN mkdir -p /opt/pravega/maintest
 RUN echo "in pravega main"
-RUN addgroup -S appgroup && adduser -S appuser -u 1001 -G appgroup
-RUN chown -R appuser:appgroup /opt/pravega/
-USER appuser
+RUN addgroup -S appgroup1 && adduser -S appuser1 -u 1001 -G appgroup1
+RUN chown -R appuser1:appgroup1 /opt/pravega/
+USER appuser1
 
 RUN chmod +x -R /opt/pravega/scripts/
 
