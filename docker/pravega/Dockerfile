@@ -31,6 +31,12 @@ WORKDIR /opt/pravega
 COPY pravega/ /opt/pravega/
 COPY scripts/ /opt/pravega/scripts/
 
+RUN mkdir /opt/pravega/maintest
+RUN echo "in pravega main"
+RUN groupadd appgroup && useradd -u 1001 -m appuser && usermod -aG appgroup appuser
+RUN chown -R appuser:appgroup /opt/pravega/
+USER appuser
+
 RUN chmod +x -R /opt/pravega/scripts/
 
 ENTRYPOINT [ "/opt/pravega/scripts/entrypoint.sh" ]
